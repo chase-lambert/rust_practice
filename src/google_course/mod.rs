@@ -1,6 +1,6 @@
 #![allow(unused_variables, dead_code)]
 
-mod ffi;
+// mod ffi;
 mod gui;
 mod health;
 mod library;
@@ -40,10 +40,10 @@ pub fn run() {
     // let transposed = transpose(matrix);
     // println!("transposed:");
     // pretty_print(&transposed);
-    // library::run();
+    library::run();
     // health::run();
     // polygon::run();
     // luhn::luhn("4263 9826 4026 9299");
     // gui::run();
-    ffi::run();
+    // ffi::run();
 }

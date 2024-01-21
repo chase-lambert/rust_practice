@@ -46,7 +46,7 @@ impl Library {
         }
     }
 
-    fn oldest_book<'a>(&'a self) -> Option<&'a Book> {
+    fn oldest_book(&self) -> Option<&Book> {
         if self.books.is_empty() {
             return None;
         }
@@ -55,13 +55,7 @@ impl Library {
         years.sort();
         let oldest_year = years[0];
 
-        for b in self.books.iter() {
-            if b.year == oldest_year {
-                return Some(b);
-            }
-        }
-
-        None
+        self.books.iter().find(|&b| b.year == oldest_year)
     }
 }
 
