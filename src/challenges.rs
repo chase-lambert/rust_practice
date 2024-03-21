@@ -115,3 +115,51 @@ fn test_flip_vertical() {
     let expected = vec![vec![7, 8, 9], vec![4, 5, 6], vec![1, 2, 3]];
     assert_eq!(flip(array, Direction::Vertical), expected);
 }
+
+// rendezvous with cassidoo challenge: 24.02.26
+pub fn remove_digit(n: i32, digit: i32) -> i32 {
+    let digit_char = char::from_digit(digit as u32, 10).unwrap();
+    let n_str = n.to_string();
+    let mut max_num = 0;
+
+    for (i, c) in n_str.char_indices() {
+        if c == digit_char {
+            let new_num_str = [&n_str[..i], &n_str[i + 1..]].concat();
+            let new_num = new_num_str.parse::<i32>().unwrap();
+
+            if new_num > max_num {
+                max_num = new_num;
+            }
+        }
+    }
+
+    if max_num == 0 {
+        return n;
+    }
+
+    max_num
+}
+
+#[test]
+fn remove_digit_test() {
+    assert_eq!(3415926, remove_digit(31415926, 1));
+    assert_eq!(231, remove_digit(1231, 1));
+}
+
+// rendezvous with cassidoo challenge: 24.03.14
+pub fn max_gap(nums: &[i32]) -> i32 {
+    if nums.len() < 2 {
+        return 0;
+    }
+
+    let mut nums = nums.to_vec();
+    nums.sort();
+
+    nums.windows(2).map(|w| w[1] - w[0]).max().unwrap_or(0)
+}
+
+#[test]
+fn max_gap_test() {
+    let nums = [3, 6, 9, 1, 2];
+    assert_eq!(3, max_gap(&nums));
+}
