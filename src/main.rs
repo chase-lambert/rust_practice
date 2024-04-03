@@ -3,11 +3,8 @@
 mod algorithms;
 mod challenges;
 mod google_course;
-mod rust_development_classes;
 
-fn main() {
-    rust_development_classes::run();
-}
+fn main() {}
 
 pub fn unique_sum(nums: &[i32]) -> i32 {
     nums.iter()
